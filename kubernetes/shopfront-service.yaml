@@ -30,8 +30,8 @@ spec:
         app: shopfront
     spec:
       containers:
-      - name: djshopfront
-        image: danielbryantuk/djshopfront:latest
+      - name: shopfront
+        image: thetips4you/shopfront:latest
         ports:
         - containerPort: 8010
         livenessProbe:
