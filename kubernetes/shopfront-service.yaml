@@ -11,7 +11,7 @@ spec:
     app: shopfront
   ports:
   - protocol: TCP
-    port: 8010
+    port: 8080
     name: http
 
 ---
@@ -33,10 +33,10 @@ spec:
       - name: shopfront
         image: thetips4you/shopfront:latest
         ports:
-        - containerPort: 8010
+        - containerPort: 8080
         livenessProbe:
           httpGet:
             path: /health
-            port: 8010
+            port: 8080
           initialDelaySeconds: 30
           timeoutSeconds: 1
