@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: catalogue
+  namespace: java-shopfront
+spec:
+  containers:
+  - name: catalogue
+    image: abhishekbhagat/productcatalogue
+    ports:
+    - containerPort: 8020
