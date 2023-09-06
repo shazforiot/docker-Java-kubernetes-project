@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stock
+  namespace: java-shopfront
+spec:
+  containers:
+  - name: stock
+    image: abhishekbhagat/stock
+    ports:
+    - containerPort: 8030
