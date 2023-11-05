@@ -6,22 +6,22 @@
   tasks:
 
     - name: execute mvn command for shopfront
-      shell: pwd && whoami && /opt/maven/apache-maven-3.8.8/bin/mvn clean
+      shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean package
       register: output
       args:
         chdir: ../shopfront
-      when: mvn == "shop"
+      when: mvn == "shop" or mvn == "allapps"
 
     - debug: var="output"  
 
     - name: execute mvn command for productcatalogue
-      command: mvn clean package
+      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean package
       args:
         chdir: ../productcatalogue
-      when: mvn == "product"
+      when: mvn == "product" or mvn == "allapps"
 
     - name: execute mvn command for stockmanager
-      command: mvn clean package
+      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean package
       args:
         chdir: ../stockmanager
-      when: mvn == "stock"
+      when: mvn == "stock" or mvn == "allapps"
