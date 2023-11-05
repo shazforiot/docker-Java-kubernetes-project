@@ -6,29 +6,29 @@
   tasks:
 
     - name: execute mvn command for shopfront
-      shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean
-      register: shop_output
+      shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
+      #register: shop_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
       when: mvn == "shop" or mvn == "allapps" 
 
     - name: execute mvn command for productcatalogue
-      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean
-      register: product_output
+      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
+      #register: product_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
       when: mvn == "product" or mvn == "allapps"
 
     - name: execute mvn command for stockmanager
-      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean
-      register: stock_output
+      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
+      #register: stock_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
       when: mvn == "stock" or mvn == "allapps"
 
-    - name: Print all mvn outputs
-      debug:
-        msg: |
-          Shopfront output: {{ shop_output.stdout | default('Not executed') }}
-          Product Catalogue output: {{ product_output.stdout | default('Not executed') }}
-          Stock Manager output: {{ stock_output.stdout | default('Not executed') }}
+    #- name: Print all mvn outputs
+    #  debug:
+    #    msg: |
+    #      Shopfront output: {{ shop_output.stdout | default('Not executed') }}
+    #      Product Catalogue output: {{ product_output.stdout | default('Not executed') }}
+    #      Stock Manager output: {{ stock_output.stdout | default('Not executed') }}
