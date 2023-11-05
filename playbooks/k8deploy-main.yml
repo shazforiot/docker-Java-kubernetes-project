@@ -6,7 +6,7 @@
   tasks:
 
     - name: execute mvn command for shopfront
-      shell: whoami && ls -ltr
+      shell: whoami && ls -ltr && mvn clean
       register: output
       args:
         chdir: ../shopfront
