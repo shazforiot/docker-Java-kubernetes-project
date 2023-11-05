@@ -1,8 +1,8 @@
 - hosts: localhost
   gather_facts: false
   become: yes
-  become_method: sudo
-  become_user: jits
+  #become_method: sudo
+  become_user: root
   tasks:
 
     - name: execute mvn command for shopfront
