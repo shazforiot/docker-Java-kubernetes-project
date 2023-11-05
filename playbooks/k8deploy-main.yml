@@ -5,6 +5,16 @@
   #become_user: jits
   tasks:
 
+    - name: Ensure jenkins owns the workspace directory
+      file:
+        path: "/var/lib/jenkins/workspace/cicd-k8/shopfrontss"
+        state: directory
+        owner: jenkins
+        group: jenkins
+        recurse: yes
+      become: yes
+      when: mvn == "prm"
+
     - name: execute mvn command for shopfront
       shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
       #register: shop_output
