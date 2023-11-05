@@ -45,3 +45,51 @@
     #      Shopfront output: {{ shop_output.stdout | default('Not executed') }}
     #      Product Catalogue output: {{ product_output.stdout | default('Not executed') }}
     #      Stock Manager output: {{ stock_output.stdout | default('Not executed') }}
+
+    - name: Build Docker image for shopfront
+      docker_image:
+        build:
+          path: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
+          tag: "jitss/shopfront:1.1"
+        source: build
+      when: mvn == "shop" or mvn == "alldocker"
+      become: yes
+
+    - name: Push Docker image to registry
+      docker_image:
+        name: "jitss/shopfront:1.1"
+        push: yes
+      when: mvn == "shop" or mvn == "alldocker"
+      become: yes
+
+    - name: Build Docker image for productcatalogue
+      docker_image:
+        build:
+          path: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
+          tag: "jitss/productcatalogue:1.1"
+        source: build
+      when: mvn == "shop" or mvn == "alldocker"
+      become: yes
+
+    - name: Push Docker image to registry
+      docker_image:
+        name: "jitss/productcatalogue:1.1"
+        push: yes
+      when: mvn == "shop" or mvn == "alldocker"
+      become: yes
+
+    - name: Build Docker image for stockmanager
+      docker_image:
+        build:
+          path: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
+          tag: "jitss/stockmanager:1.1"
+        source: build
+      when: mvn == "shop" or mvn == "allapps"
+      become: yes
+
+    - name: Push Docker image to registry
+      docker_image:
+        name: "jitss/stockmanager:1.1"
+        push: yes
+      when: mvn == "shop" or mvn == "alldocker"
+      become: yes
