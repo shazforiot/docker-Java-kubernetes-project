@@ -1,12 +1,12 @@
 - hosts: localhost
   gather_facts: false
-  #become: yes
-  #become_method: sudo
+  become: yes
+  become_method: sudo
   #become_user: root
   tasks:
 
     - name: execute mvn command for shopfront
-      shell: pwd && sudo su - $USER -c "mvn clean"
+      shell: pwd && "mvn clean"
       register: output
       args:
         chdir: ../shopfront
