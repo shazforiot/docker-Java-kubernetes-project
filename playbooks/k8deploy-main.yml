@@ -7,9 +7,12 @@
 
     - name: execute mvn command for shopfront
       shell: whoami && ls -ltr
+      register: output
       args:
         chdir: ../shopfront
       when: mvn == "shop"
+
+    - debug: var="output"  
 
     - name: execute mvn command for productcatalogue
       command: mvn clean package
