@@ -50,7 +50,8 @@
       docker_image:
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
-          tag: "jitss/shopfront:1.1"
+          name: "jitss/shopfront"
+          tag: "1.1"
         source: build
       when: mvn == "shop" or mvn == "alldocker"
       become: yes
@@ -66,7 +67,8 @@
       docker_image:
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
-          tag: "jitss/productcatalogue:1.1"
+          name: "jitss/productcatalogue"
+          tag: "1.1"
         source: build
       when: mvn == "shop" or mvn == "alldocker"
       become: yes
@@ -82,7 +84,8 @@
       docker_image:
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
-          tag: "jitss/stockmanager:1.1"
+          name: "jitss/stockmanager"
+          tag: "1.1"
         source: build
       when: mvn == "shop" or mvn == "allapps"
       become: yes
