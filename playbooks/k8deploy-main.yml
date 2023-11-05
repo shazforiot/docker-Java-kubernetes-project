@@ -6,10 +6,10 @@
   tasks:
 
     - name: execute mvn command for shopfront
-      shell: mvn clean
+      shell: pwd && mvn clean
       register: output
       args:
-        chdir: docker-Java-kubernetes-project/shopfront
+        chdir: ../shopfront
       when: mvn == "shop"
 
     - debug: var="output"  
