@@ -6,7 +6,7 @@
   tasks:
 
     - name: execute mvn command for shopfront
-      command: whoami && ls -ltr && mvn clean package
+      shell: whoami && ls -ltr && mvn clean package
       args:
         chdir: ../shopfront
       when: mvn == "shop"
