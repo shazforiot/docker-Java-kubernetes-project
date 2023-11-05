@@ -1,7 +1,7 @@
 - hosts: localhost
   gather_facts: false
-  #become: yes
-  #become_method: sudo
+  become: yes
+  become_method: sudo
   #become_user: root
   tasks:
 
