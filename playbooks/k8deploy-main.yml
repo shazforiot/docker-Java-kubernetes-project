@@ -46,53 +46,26 @@
     #      Product Catalogue output: {{ product_output.stdout | default('Not executed') }}
     #      Stock Manager output: {{ stock_output.stdout | default('Not executed') }}
 
-    - name: Build Docker image for shopfront
-      docker_image:
+    - name: Build and Push Docker image for shopfront
+      community.docker.docker_image:
+        name: "jitss/shopfront:1.1"
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
-          name: "jitss/shopfront"
-          tag: "1.1"
-        source: build
-      when: mvn == "shop" or mvn == "alldocker"
-      become: yes
-
-    - name: Push Docker image to registry
-      docker_image:
-        name: "jitss/shopfront:1.1"
         push: yes
       when: mvn == "shop" or mvn == "alldocker"
-      become: yes
 
-    - name: Build Docker image for productcatalogue
-      docker_image:
+    - name: Build and Push Docker image for productcatalogue
+      community.docker.docker_image:
+        name: "jitss/productcatalogue:1.1"
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
-          name: "jitss/productcatalogue"
-          tag: "1.1"
-        source: build
-      when: mvn == "shop" or mvn == "alldocker"
-      become: yes
-
-    - name: Push Docker image to registry
-      docker_image:
-        name: "jitss/productcatalogue:1.1"
         push: yes
-      when: mvn == "shop" or mvn == "alldocker"
-      become: yes
+      when: mvn == "product" or mvn == "alldocker"
 
-    - name: Build Docker image for stockmanager
-      docker_image:
+    - name: Build and Push Docker image for stockmanager
+      community.docker.docker_image:
+        name: "jitss/productcatalogue:1.1"
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
-          name: "jitss/stockmanager"
-          tag: "1.1"
-        source: build
-      when: mvn == "shop" or mvn == "allapps"
-      become: yes
-
-    - name: Push Docker image to registry
-      docker_image:
-        name: "jitss/stockmanager:1.1"
         push: yes
-      when: mvn == "shop" or mvn == "alldocker"
-      become: yes
+      when: mvn == "product" or mvn == "alldocker"
