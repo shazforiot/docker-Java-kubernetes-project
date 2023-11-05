@@ -11,6 +11,7 @@
       args:
         chdir: ../shopfront
       when: mvn == "shop"
+      become_user: jits
 
     - debug: var="output"  
 
