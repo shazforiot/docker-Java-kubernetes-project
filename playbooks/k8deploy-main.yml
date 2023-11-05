@@ -9,16 +9,16 @@
       command: mvn clean package
       args:
         chdir: shopfront
-      when: mvn == "shop"
+      when: mvn == "../shop"
 
     - name: execute mvn command for productcatalogue
       command: mvn clean package
       args:
         chdir: productcatalogue
-      when: mvn == "product"
+      when: mvn == "../product"
 
     - name: execute mvn command for stockmanager
       command: mvn clean package
       args:
         chdir: stockmanager
-      when: mvn == "stock"
+      when: mvn == "../stock"
