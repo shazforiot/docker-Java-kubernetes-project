@@ -17,7 +17,7 @@ node {
     stage('Execute Ansible Playbooks on Kubernetes Master') {
         ansiblePlaybook(
             playbook: "playbooks/k8deploy-main.yml",
-            extras: "-i inventory/k8-inventory -e target_host=${comp} -e mvn=${mvn}"
+            extras: "-u jits -i inventory/k8-inventory -e target_host=${comp} -e mvn=${mvn}"
         )
     }
 }
