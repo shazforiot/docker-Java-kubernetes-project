@@ -20,7 +20,7 @@
       #register: shop_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
-      when: mvn == "shop" or mvn == "allapps"
+      when: mvn == "shop" or mvn == "allapps_"
       become: yes 
 
     - name: execute mvn command for productcatalogue
