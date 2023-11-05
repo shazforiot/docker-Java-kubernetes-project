@@ -47,7 +47,7 @@
     #      Stock Manager output: {{ stock_output.stdout | default('Not executed') }}
 
     - name: Build and Push Docker image for shopfront
-      community.docker.docker_image:
+      docker_image:
         name: "jitss/shopfront:1.1"
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
@@ -55,7 +55,7 @@
       when: mvn == "shop" or mvn == "alldocker"
 
     - name: Build and Push Docker image for productcatalogue
-      community.docker.docker_image:
+      docker_image:
         name: "jitss/productcatalogue:1.1"
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
@@ -63,7 +63,7 @@
       when: mvn == "product" or mvn == "alldocker"
 
     - name: Build and Push Docker image for stockmanager
-      community.docker.docker_image:
+      docker_image:
         name: "jitss/productcatalogue:1.1"
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
