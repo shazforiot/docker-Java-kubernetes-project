@@ -16,12 +16,12 @@
       command: /opt/maven/apache-maven-3.8.8/bin/mvn clean
       register: product_output
       args:
-        chdir: ../productcatalogue
+        chdir: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue
       when: mvn == "product" or mvn == "allapps"
 
     - name: execute mvn command for stockmanager
       command: /opt/maven/apache-maven-3.8.8/bin/mvn clean
       register: stock_output
       args:
-        chdir: ../stockmanager
+        chdir: "{{ lookup('env', 'WORKSPACE') }}/stockmanager
       when: mvn == "stock" or mvn == "allapps"
