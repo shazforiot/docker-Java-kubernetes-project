@@ -6,7 +6,7 @@
   tasks:
 
     - name: execute mvn command for shopfront
-      shell: whoami && ls -ltr && sudo su - $USER -c "mvn --version"
+      shell: whoami && ls -ltr && sudo su - $USER -c "mvn clean"
       register: output
       args:
         chdir: ../shopfront
