@@ -8,17 +8,17 @@
     - name: execute mvn command for shopfront
       command: mvn clean package
       args:
-        chdir: shopfront
-      when: mvn == "../shop"
+        chdir: ../shopfront
+      when: mvn == "shop"
 
     - name: execute mvn command for productcatalogue
       command: mvn clean package
       args:
-        chdir: productcatalogue
-      when: mvn == "../product"
+        chdir: ../productcatalogue
+      when: mvn == "product"
 
     - name: execute mvn command for stockmanager
       command: mvn clean package
       args:
-        chdir: stockmanager
-      when: mvn == "../stock"
+        chdir: ../stockmanager
+      when: mvn == "stock"
