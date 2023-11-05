@@ -1,0 +1,24 @@
+- hosts: "{{ target_host }}"
+  gather_facts: false
+  #become: yes
+  #become_method: sudo
+  #become_user: jits
+  tasks:
+
+    - name: execute mvn command for shopfront
+      command: mvn clean package
+      args:
+        chdir: shopfront
+      when: mvn == "shop"
+
+    - name: execute mvn command for productcatalogue
+      command: mvn clean package
+      args:
+        chdir: productcatalogue
+      when: mvn == "product"
+
+    - name: execute mvn command for stockmanager
+      command: mvn clean package
+      args:
+        chdir: stockmanager
+      when: mvn == "stock"

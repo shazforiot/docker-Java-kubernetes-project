@@ -2,6 +2,7 @@ properties([
     parameters([
         string(defaultValue: 'dev-uat', name: 'BRANCH'),
         string(defaultValue: 'master', name: 'comp'),
+        string(defaultValue: 'master', name: 'mvn'),
         string(defaultValue: 'service', name: 'action')
     ])
 ])
@@ -13,10 +14,10 @@ node {
         git branch: "${params.BRANCH}", credentialsId: 'myjenkins', url: 'git@github.com:pjitss/docker-Java-kubernetes-project.git'
     }
 
-    stage('Build with Maven') {
-        def mvnHome = tool 'maven'
-        dir('shopfront') {
-            sh "${mvnHome}/bin/mvn clean"
-        }
+    stage('Execute Ansible Playbooks on Kubernetes Master') {
+        ansiblePlaybook(
+            playbook: "playbooks/k8deploy-main.yml",
+            extras: " -e mvn=${mvn}"
+        )
     }
 }
