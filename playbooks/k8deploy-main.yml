@@ -9,7 +9,7 @@
       shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean
       register: shop_output
       args:
-        chdir: ../shopfront
+        chdir: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
       when: mvn == "shop" or mvn == "allapps" 
 
     - name: execute mvn command for productcatalogue

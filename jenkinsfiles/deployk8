@@ -10,6 +10,8 @@ properties([
 node {
     cleanWs()
 
+    echo "The workspace directory is ${env.WORKSPACE}"
+
     stage('Git Checkout') {
         git branch: "${params.BRANCH}", credentialsId: 'myjenkins', url: 'git@github.com:pjitss/docker-Java-kubernetes-project.git'
     }
