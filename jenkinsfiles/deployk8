@@ -1,0 +1,22 @@
+properties([
+    parameters([
+        string(defaultValue: 'dev-uat', name: 'BRANCH'),
+        string(defaultValue: 'master', name: 'comp'),
+        string(defaultValue: 'service', name: 'action')
+    ])
+])
+
+node {
+    cleanWs()
+
+    stage('Git Checkout') {
+        git branch: "${params.BRANCH}", credentialsId: 'myjenkins', url: 'git@github.com:pjitss/docker-Java-kubernetes-project.git'
+    }
+
+    stage('Build with Maven') {
+        def mvnHome = tool 'maven'
+        dir('shopfront') {
+            sh "${mvnHome}/bin/mvn clean"
+        }
+    }
+}
