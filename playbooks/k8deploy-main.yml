@@ -1,8 +1,8 @@
-- hosts: "{{ target_host }}"
+- hosts: localhost
   gather_facts: false
-  become: yes
-  become_method: sudo
-  become_user: jits
+  #become: yes
+  #become_method: sudo
+  #become_user: jits
   tasks:
 
     - name: execute mvn command for shopfront
