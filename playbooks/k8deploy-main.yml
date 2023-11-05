@@ -29,6 +29,7 @@
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
       when: mvn == "product" or mvn == "allapps"
+      become: yes
 
     - name: execute mvn command for stockmanager
       command: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
@@ -36,6 +37,7 @@
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
       when: mvn == "stock" or mvn == "allapps"
+      become: yes
 
     #- name: Print all mvn outputs
     #  debug:
