@@ -16,12 +16,19 @@
       command: /opt/maven/apache-maven-3.8.8/bin/mvn clean
       register: product_output
       args:
-        chdir: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue
+        chdir: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
       when: mvn == "product" or mvn == "allapps"
 
     - name: execute mvn command for stockmanager
       command: /opt/maven/apache-maven-3.8.8/bin/mvn clean
       register: stock_output
       args:
-        chdir: "{{ lookup('env', 'WORKSPACE') }}/stockmanager
+        chdir: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
       when: mvn == "stock" or mvn == "allapps"
+
+    - name: Print all mvn outputs
+      debug:
+        msg: |
+          Shopfront output: {{ shop_output.stdout | default('Not executed') }}
+          Product Catalogue output: {{ product_output.stdout | default('Not executed') }}
+          Stock Manager output: {{ stock_output.stdout | default('Not executed') }}
