@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: "{{ target_host }}"
   gather_facts: false
   #become: yes
   #become_method: sudo

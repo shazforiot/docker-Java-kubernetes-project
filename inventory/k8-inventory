@@ -2,4 +2,4 @@
 192.168.0.112 ansible_user=jits ansible_ssh_pass=redhat
 
 [localhost]
-localhost
+192.168.0.112
