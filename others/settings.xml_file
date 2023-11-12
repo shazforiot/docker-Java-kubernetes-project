@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+
+    <!-- Licensed to the Apache Software Foundation (ASF) under one... [additional license information] ... -->
+
+    <!-- This is the configuration file for Maven... [additional introductory comments] ... -->
+
+    <!-- localRepository
+     | The path to the local repository maven will use to store artifacts.
+     | Default: ${user.home}/.m2/repository
+    <localRepository>/path/to/local/repo</localRepository>
+    -->
+
+    <!-- interactiveMode
+     | This will determine whether maven prompts you when it needs input.
+     | Default: true
+    <interactiveMode>true</interactiveMode>
+    -->
+
+    <!-- offline
+     | Determines whether maven should attempt to connect to the network when executing a build.
+     | Default: false
+    <offline>false</offline>
+    -->
+
+    <!-- pluginGroups
+     | This is a list of additional group identifiers that will be searched when resolving plugins...
+     | [additional pluginGroups information]
+     -->
+    <pluginGroups>
+        <!-- pluginGroup
+         | Specifies a further group identifier to use for plugin lookup.
+        <pluginGroup>com.your.plugins</pluginGroup>
+        -->
+    </pluginGroups>
+
+    <!-- proxies
+     | This is a list of proxies which can be used on this machine to connect to the network...
+     | [additional proxies information]
+     -->
+    <proxies>
+        <!-- proxy
+         | Specification for one proxy, to be used in connecting to the network.
+         |
+        <proxy>
+          <id>optional</id>
+          <active>true</active>
+          <protocol>http</protocol>
+          <username>proxyuser</username>
+          <password>proxypass</password>
+          <host>proxy.host.net</host>
+          <port>80</port>
+          <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+        </proxy>
+        -->
+    </proxies>
+
+        <!-- servers
+     | This is a list of authentication profiles...
+     | [additional servers information]
+     -->
+    <servers>
+        <!-- Existing server configurations -->
+        <!-- server
+         | Specifies the authentication information to use when connecting to a particular server...
+         | [additional server configuration information]
+         |
+        <server>
+          <id>deploymentRepo</id>
+          <username>repouser</username>
+          <password>repopwd</password>
+        </server>
+        -->
+
+        <!-- Another sample, using keys to authenticate.
+        <server>
+          <id>siteServer</id>
+          <privateKey>/path/to/private/key</privateKey>
+          <passphrase>optional; leave empty if not used.</passphrase>
+        </server>
+        -->
+
+        <!-- Nexus server configurations -->
+        <server>
+            <id>nexus-releases</id>
+            <username>jitsnexus</username>
+            <password>{9VYKv8N4arIHArUuHxu7j/gKBkgIyAt663MEHi5EDPY=}</password>
+        </server>
+        <server>
+            <id>nexus-snapshots</id>
+            <username>jitsnexus</username>
+            <password>{9VYKv8N4arIHArUuHxu7j/gKBkgIyAt663MEHi5EDPY=}</password>
+        </server>
+    </servers>
+
+    <!-- mirrors
+     | This is a list of mirrors to be used in downloading artifacts from remote repositories...
+     | [additional mirrors information]
+     -->
+    <mirrors>
+        <!-- mirror
+         | Specifies a repository mirror site to use instead of a given repository...
+         | [additional mirror configuration information]
+         |
+        <mirror>
+          <id>mirrorId</id>
+          <mirrorOf>repositoryId</mirrorOf>
+          <name>Human Readable Name for this Mirror.</name>
+          <url>http://my.repository.com/repo/path</url>
+        </mirror>
+         -->
+        <mirror>
+          <id>maven-default-http-blocker</id>
+          <mirrorOf>external:http:*</mirrorOf>
+          <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+          <url>http://0.0.0.0/</url>
+          <blocked>true</blocked>
+        </mirror>
+    </mirrors>
+
+        <!-- profiles
+     | This is a list of profiles which can be activated in a variety of ways...
+     | [additional profiles information]
+     -->
+    <profiles>
+        <!-- Existing profiles configuration -->
+        <!-- profile
+         | Specifies a set of introductions to the build process...
+         | [additional profile configuration information]
+         |
+         <profile>
+           <id>jdk-1.4</id>
+           <activation>
+             <jdk>1.4</jdk>
+           </activation>
+           <repositories>
+             <repository>
+               <id>jdk14</id>
+               <name>Repository for JDK 1.4 builds</name>
+               <url>http://www.myhost.com/maven/jdk14</url>
+               <layout>default</layout>
+               <snapshotPolicy>always</snapshotPolicy>
+             </repository>
+           </repositories>
+         </profile>
+        -->
+
+        <!-- Nexus Repository Profile -->
+        <profile>
+            <id>nexus</id>
+            <repositories>
+                <repository>
+                    <id>nexus-releases</id>
+                    <url>http://192.168.0.190:8081/repository/maven-releases/</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>false</enabled></snapshots>
+                </repository>
+                <repository>
+                    <id>nexus-snapshots</id>
+                    <url>http://192.168.0.190:8081/repository/maven-snapshots/</url>
+                    <snapshots><enabled>true</enabled></snapshots>
+                    <releases><enabled>false</enabled></releases>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus</id>
+                    <url>http://102.168.0.190:8081/repository/maven-public/</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+
+    <!-- activeProfiles
+     | List of profiles that are active for all builds.
+     | [additional activeProfiles information]
+     -->
+    <activeProfiles>
+        <!-- Existing active profile configurations -->
+        <activeProfile>alwaysActiveProfile</activeProfile>
+        <activeProfile>anotherAlwaysActiveProfile</activeProfile>
+
+        <!-- Activating Nexus profile -->
+        <activeProfile>nexus</activeProfile>
+    </activeProfiles>
+</settings>
