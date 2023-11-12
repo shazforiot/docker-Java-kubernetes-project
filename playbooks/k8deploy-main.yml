@@ -24,7 +24,7 @@
       become: yes 
 
     - name: execute mvn command for productcatalogue
-      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
+      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean deploy
       #register: product_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
@@ -70,4 +70,3 @@
         push: yes
       when: mvn == "docker"
 
-      
