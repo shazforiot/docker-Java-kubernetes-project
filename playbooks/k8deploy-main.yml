@@ -52,7 +52,7 @@
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
         push: yes
-      when: mvn == "shop" or mvn == "allapps"
+      when: mvn == "docker"
 
     - name: Build and Push Docker image for productcatalogue
       docker_image:
@@ -60,7 +60,7 @@
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/productcatalogue"
         push: yes
-      when: mvn == "product" or mvn == "allapps"
+      when: mvn == "docker"
 
     - name: Build and Push Docker image for stockmanager
       docker_image:
@@ -68,4 +68,6 @@
         build:
           path: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
         push: yes
-      when: mvn == "product" or mvn == "allapps"
+      when: mvn == "docker"
+
+      
