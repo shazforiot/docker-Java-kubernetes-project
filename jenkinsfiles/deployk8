@@ -16,10 +16,19 @@ node {
         git branch: "${params.BRANCH}", credentialsId: 'myjenkins', url: 'git@github.com:pjitss/docker-Java-kubernetes-project.git'
     }
 
-    //stage('setting maven path') {
-        // Ensure the tool 'Maven' is configured in Jenkins Global Tool Configuration
-    //    def mvnHome = tool 'maven'
-    //}
+    stage('SonarQube Analysis') {
+        withCredentials([string(credentialsId: 'mysonar2', variable: 'SONAR_TOKEN')]) {
+            withSonarQubeEnv('mysonar') {
+            sh """
+               mvn clean verify sonar:sonar \
+               -Dsonar.projectKey=mysonar2 \
+               -Dsonar.host.url=http://192.168.0.190:9000 \
+               -Dsonar.login=$SONAR_TOKEN
+            """
+            }
+        }
+    }
+
     stage('Execute Ansible Playbooks on Kubernetes Master') {
         ansiblePlaybook(
             playbook: "playbooks/k8deploy-main.yml",
