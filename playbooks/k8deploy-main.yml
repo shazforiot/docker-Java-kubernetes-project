@@ -16,7 +16,7 @@
       when: mvn == "prm"
 
     - name: execute mvn command for shopfront
-      shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
+      shell: /opt/maven/apache-maven-3.8.8/bin/mvn clean deploy
       #register: shop_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/shopfront"
@@ -32,7 +32,7 @@
       become: yes
 
     - name: execute mvn command for stockmanager
-      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean install
+      command: /opt/maven/apache-maven-3.8.8/bin/mvn clean deploy
       #register: stock_output
       args:
         chdir: "{{ lookup('env', 'WORKSPACE') }}/stockmanager"
