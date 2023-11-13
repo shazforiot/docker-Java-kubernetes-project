@@ -73,4 +73,17 @@
         </plugins>
 
     </build>
+
+    <!-- DistributionManagement for Nexus -->
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id> <!-- Match this with the ID in your settings.xml -->
+            <url>http://192.168.0.190:8081/repository/maven-releases/</url> <!-- Replace with your Nexus release repository URL -->
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id> <!-- Match this with the ID in your settings.xml -->
+            <url>http://192.168.0.190:8081/repository/maven-snapshots/</url> <!-- Replace with your Nexus snapshot repository URL -->
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
