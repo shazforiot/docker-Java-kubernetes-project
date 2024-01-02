@@ -16,6 +16,8 @@ node {
         git branch: "${params.BRANCH}", credentialsId: 'myjenkins', url: 'git@github.com:pjitss/docker-Java-kubernetes-project.git'
     }
 
+    
+
     stage('SonarQube Analysis') {
         withCredentials([string(credentialsId: 'mysonar2', variable: 'SONAR_TOKEN')]) {
             withSonarQubeEnv('mysonar') {
